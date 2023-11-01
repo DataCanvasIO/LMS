@@ -1,0 +1,11 @@
+{
+  "model": "/Users/dev/Documents/APS/models/huggingface/opt-125m",
+  "benchmarks": [
+    {
+      "benchmarks_name": "ARC",
+      "Metric": {
+        "acc": 12.54237288135593
+      }
+    }
+  ]
+}

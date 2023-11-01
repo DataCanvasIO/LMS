@@ -1,0 +1,10 @@
+/bin/sh -c lms_rt deploy --model_path=/home/wuchen/t5-v1_1-small2 --model_name=t5-v1_1-small2 --port=37072 --server_id=001d60dccc1f866a0ad6909f82998886     --gpu=0  --api_key=ce7e51f89dcad6990f88d103cc370177   --loglevel=INFO   > /home/wuchen/.lms/logs/deployment/t5-v1_1-small2.log 2>&1
+/home/wuchen/.local/bin/python3 /home/wuchen/.local/bin/lms_rt deploy --model_path=/home/wuchen/t5-v1_1-small2 --model_name=t5-v1_1-small2 --port=37072 --server_id=001d60dccc1f866a0ad6909f82998886 --gpu=0 --api_key=ce7e51f89dcad6990f88d103cc370177 --loglevel=INFO
+tail -F /home/wuchen/.lms/logs/deployment/t5-v1_1-small2.log
+/home/wuchen/.local/bin/python3 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMF19 --master_addr=127.0.0.1 --enable_each_rank_log=None --master_port=48715 /home/wuchen/.local/lib/python3.9/site-packages/lms/runtime/deploy/deepspeed_infer.py --model_path=/home/wuchen/t5-v1_1-small2 --model_name=t5-v1_1-small2 --server_id=001d60dccc1f866a0ad6909f82998886 --learning_type=text-generation --device=cuda:0 --dtype=fp16
+/home/wuchen/.local/bin/python3 -u /home/wuchen/.local/lib/python3.9/site-packages/lms/runtime/deploy/deepspeed_infer.py --local_rank=0 --model_path=/home/wuchen/t5-v1_1-small2 --model_name=t5-v1_1-small2 --server_id=001d60dccc1f866a0ad6909f82998886 --learning_type=text-generation --device=cuda:0 --dtype=fp16
+grep --color=auto lms
+/bin/sh -c /home/wuchen/.local/bin/python3 -u -m lms.web.launcher --port 18900 >/home/wuchen/.lms/logs/lms_web.log 2>&1
+/home/wuchen/.local/bin/python3 -u -m lms.web.launcher --port 18900
+/bin/sh -c /home/wuchen/.local/bin/python3 -u -m lms.client.daemon.main --port=38190 >/home/wuchen/.lms/logs/lmsd.log 2>&1
+/home/wuchen/.local/bin/python3 -u -m lms.client.daemon.main --port=38190

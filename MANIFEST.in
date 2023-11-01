@@ -1,0 +1,6 @@
+include lms/web/static/*.*
+include lms/web/*.json
+include MANIFEST.in
+
+include lms/runtime/deploy/request_body.json
+graft lms/runtime/evaluation/benchmark/data

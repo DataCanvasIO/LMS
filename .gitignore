@@ -1,0 +1,14 @@
+.idea/*
+!.idea/runConfigurations/
+.vscode
+**/*.pyc
+**/.DS_Store
+build
+dist
+*.egg-info
+venv
+.cache
+.coverage**
+coverage.xml
+.scannerwork
+.dir-locals.el

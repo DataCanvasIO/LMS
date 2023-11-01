@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lms"
+version = "0.1.0"
+requires-python = ">=3.9.0"
+dependencies = [
+    #====for web
+    "requests",
+    "paramiko",
+    "sanic",
+    "peewee",
+    "pandas",
+    "httpx",
+    "asyncssh",
+    "aiofiles",
+    #====for runtime
+    "torch",
+    "transformers==4.33.2",
+    "deepspeed>=0.11.1",
+    "sentencepiece",
+    "protobuf~=3.20.0",
+    "sanic",
+    "sanic-ext",
+    "importlib-metadata",
+    "accelerate",
+    "datasets",
+    "bitsandbytes",
+    "evaluate",
+    "scipy",
+    #    "xformers",
+    "scikit-learn",
+    "fastjsonschema",
+    "tiktoken",
+    #    "seqeval",
+    #    "optimum",
+    #    "auto-gptq",
+    #====for client
+    "nvidia-ml-py3",
+    "psutil",
+    "requests",
+    "optimum",
+    "auto-gptq"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]  # ["."] by default
+include = ["lms*"]  # ["*"] by default
+exclude = ["lms.tests*"]  # empty by default
+namespaces = true  # true by default
+
+[project.scripts]
+lms_web = "lms.web.main:main"
+lms_rt = "lms.runtime.main:main"
+lmsrt = "lms.runtime.main:main"
+lms = "lms.client.main:main"
+lmsd = "lms.client.daemon.main:main"
+
+[tool.setuptools]
+include-package-data = true
