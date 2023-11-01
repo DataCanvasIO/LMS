@@ -20,13 +20,13 @@ interface for monitoring deployed models.
 You can install LMS with the following command.
 
 ```bash
-pip install lms
+pip install dc-lms
 ```
 
 or
 
 ```bash
-git clone git@gitlab.datacanvas.com:APS-OpenSource/lms.git
+git clone git@github.com:DataCanvasIO/LMS.git
 cd lms
 python setup.py install
 ```
