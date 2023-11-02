@@ -193,4 +193,4 @@ After the model is deployed successfully, you can view the deployment status and
 This project is released under the [Apache 2.0 license](LICENSE).
 
 ## DataCanvas
-HyperGBM is an open source project created by [DataCanvas](https://www.datacanvas.com/). 
+LMS is an open source project created by [DataCanvas](https://www.datacanvas.com/). 
