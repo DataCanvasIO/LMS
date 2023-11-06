@@ -42,11 +42,15 @@ def join(server, token, entrypoint):
         finally:
             os.remove(pid_path)
 
-    daemon_port = DEFAULT_DEAMON_PORT if is_port_available(DEFAULT_DEAMON_PORT) else find_free_port()
+    eval_url = "http://%s/admin/pubkey" % server
+    response = requests.post(url=eval_url, json={}, headers={})
+    public_key = response.json()['pubkey']
+    server_id = response.json()['server_id']
 
+    daemon_port = DEFAULT_DEAMON_PORT if is_port_available(DEFAULT_DEAMON_PORT) else find_free_port()
     log_path = f'{os.path.expanduser("~")}/.lms/logs/lmsd.log'
 
-    cmd = f"{sys.executable} -u -m lms.client.daemon.main --port={daemon_port} >{log_path} 2>&1 "
+    cmd = f"{sys.executable} -u -m lms.client.daemon.main --port={daemon_port} --server_id={server_id} >{log_path} 2>&1 "
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                             preexec_fn=lambda: os.setpgrp())
 
@@ -58,10 +62,6 @@ def join(server, token, entrypoint):
             print(f"failed to start log_path with exit code:{proc.returncode}")
             sys.exit(1)
 
-    eval_url = "http://%s/admin/pubkey" % server
-    response = requests.post(url=eval_url, json={}, headers={})
-    public_key = response.json()['pubkey']
-    server_id = response.json()['server_id']
     flag = False
 
     if os.path.exists(authorized_keys_path):

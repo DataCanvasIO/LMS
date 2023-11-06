@@ -9,17 +9,17 @@ from psutil import NoSuchProcess, AccessDenied
 from sanic import Sanic
 from sanic.response import json
 
-from lms.client.config import server_id
 from lms.client.daemon.nvml_util import nvml_pmon
-
-LMS_RT_PATTERN = rf'.*(lms_rt\s+deploy|deepspeed_infer\.py|transformers_infer\.py).*--model_path=.*?\s+--model_name=(?P<model_name>.*?)\s+(--port=(?P<port>\d*))?\s*--server_id={server_id}'
 
 metrics_map = {}
 last_update_time = time.time_ns()
 
 
-def make_app(interval):
+def make_app(interval, server_id):
     app = Sanic(name="default")
+    if server_id is None:
+        from lms.client.config import server_id
+    LMS_RT_PATTERN = rf'.*(lms_rt\s+deploy|deepspeed_infer\.py|transformers_infer\.py).*--model_path=.*?\s+--model_name=(?P<model_name>.*?)\s+(--port=(?P<port>\d*))?\s*--server_id={server_id}'
 
     async def collect_metrics(interval=15):
         while True:

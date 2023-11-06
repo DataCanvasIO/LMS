@@ -18,9 +18,10 @@ def main():
     parser.add_argument('--host', type=str, default="0.0.0.0", help='global_params help')
     parser.add_argument('--port', type=int, default="8082", help='global_params help')
     parser.add_argument('--interval', type=int, default=15, help='global_params help')
+    parser.add_argument('--server_id', type=str, help='global_params help')
 
     args = parser.parse_args()
-    make_app(args.interval).run(host='0.0.0.0', port=args.port, single_process=True)
+    make_app(args.interval, args.server_id).run(host='0.0.0.0', port=args.port, single_process=True)
 
 
 if __name__ == "__main__":
