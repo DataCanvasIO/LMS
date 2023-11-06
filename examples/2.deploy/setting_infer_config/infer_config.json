@@ -1,0 +1,18 @@
+{
+  "prompt_role": {
+    "User": "User",
+    "Assistant": "Assistant"
+  },
+  "tokenizer_kwargs": {
+    "padding_side": "left"
+  },
+  "model_kwargs": {
+  },
+  "generate": {
+    "repetition_penalty": 1.2,
+    "top_k": 40,
+    "top_p": 0.5,
+    "temperature": 0.7,
+    "max_new_tokens": 512
+  }
+}

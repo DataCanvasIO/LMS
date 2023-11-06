@@ -3,8 +3,8 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lms"
-version = "0.1.0"
+name = "dc-lms"
+version = "1.0.0"
 requires-python = ">=3.9.0"
 dependencies = [
     #====for web
@@ -48,7 +48,7 @@ dependencies = [
 [tool.setuptools.packages.find]
 where = ["."]  # ["."] by default
 include = ["lms*"]  # ["*"] by default
-exclude = ["lms.tests*"]  # empty by default
+exclude = ["lms.tests*","tests*"]  # empty by default
 namespaces = true  # true by default
 
 [project.scripts]
